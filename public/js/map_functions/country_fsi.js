@@ -22,16 +22,9 @@ function resetHighlight(e) {
 }
 
 function zoomToFeature(e) {
-    
-    //var censusTract = e.target.feature.properties.CensusTract; 
 
     map.fitBounds(e.target.getBounds());
 
-    fsiLayer.bringToBack();
-
-    // runLine(513700);
-   
-    // crimePointAdd(censusTract, crimeJSON);
 }
 
 
@@ -61,7 +54,7 @@ function zoomToFeature(e) {
             color: 'white',
             dashArray: '3',
             fillOpacity: 0.5,
-            fillColor: fsiColor(feature.properties.SCORE)
+            fillColor: 'red'
         };
     }
 

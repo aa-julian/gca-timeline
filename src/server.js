@@ -32,7 +32,7 @@ const acledCtrl = require('./controllers/acled');
 
 const router = express.Router();
 router.route('').get(indexCtrl);
-router.route('/acledEvents').get(acledCtrl);
+
 
 
 app.use('/', router);

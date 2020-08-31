@@ -1,20 +1,8 @@
 class ButtonHandlers {
     constructor() {
         this.searchModal = new coreui.Modal(document.getElementById('search-modal'));
-        this.eventChartModal = new coreui.Modal(document.getElementById('event-chart-modal'));
-        this.eventDetailModal = new coreui.Modal(document.getElementById('event-detail-modal'));
-        this.notesDetailModal = new coreui.Modal(document.getElementById('notes-detail-modal'));
-        this.notesChartModal = new coreui.Modal(document.getElementById('notes-chart-modal'));
-        this.notesGraphModal = new coreui.Modal(document.getElementById('notes-graph-modal'));
         this.busyIcon = document.getElementById('busy-icon');
         this.searchBtn = document.getElementById('search');
-        this.eventBtn = document.getElementById('event');
-        this.eventChartBtn = document.getElementById('event-chart');
-        this.eventDetailBtn = document.getElementById('event-detail');
-        this.notesChartBtn = document.getElementById('notes-chart');
-        this.notesDetailBtn = document.getElementById('notes-detail');
-        this.graphDetailBtn = document.getElementById('notes-graph');
-        this.notesBtn = document.getElementById('notes');
         this.cancelBtn = document.getElementById('cancel');
         this.updateBtn = document.getElementById('update');
         this.covidSwitch = document.getElementById('covid-switch');
@@ -50,25 +38,7 @@ class ButtonHandlers {
             this.searchModal.hide();
         };
 
-        this.eventChartBtn.onclick = () => {
-            this.eventChartModal.show();
-        };
-
-        this.eventDetailBtn.onclick = () => {
-            this.eventDetailModal.show();
-        };
-
-        this.notesChartBtn.onclick = () => {
-            this.notesChartModal.show();
-        };
-
-        this.notesDetailBtn.onclick = () => {
-            this.notesDetailModal.show();
-        };
-
-        this.graphDetailBtn.onclick = () => {
-            this.notesGraphModal.show();
-        };
+       
 
         // set switch values to prevent value lost on page reload
         this.setCheckValue(this.covidSwitch);

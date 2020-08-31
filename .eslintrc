@@ -15,15 +15,6 @@
     "coreui": true,
     "L": true,
     "map": true,
-    "mapInfo": true,
-    "acledColor": true,
-    "acledLayerGroup": true,
-    "acledHeatLayer": true,
-    "acled_point_get": true,
-    "btnHandlers": true,
-    "Highcharts": true,
-    "sunChart": true,
-    "wordCloudChart": true,
-    "d3": true
+    "mapInfo": true
   }
 }

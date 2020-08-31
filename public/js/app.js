@@ -24,7 +24,6 @@ const acledHeatLayer = new L.LayerGroup();
 const overlayMaps = {
 
     '<span style="color: gray">Heat Layer</span>': acledHeatLayer,
-    '<span style="color: gray">CLUSTER</span>': dbscanLayerGroup,
     '<span style="color: gray">ACLED</span>': acledLayerGroup
 };
 

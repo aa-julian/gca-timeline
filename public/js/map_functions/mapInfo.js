@@ -9,15 +9,6 @@ mapInfo.onAdd = function () {
     return this._div;
 };
 
-
-//Updates the mapInfo shown in the top-right
-mapInfo.update = function (props) {
-
-    this._div.innerHTML = '<h4>FSI map</h4>' + (props ?
-        '<b> Country : ' + props.COUNTRY + '</b><br />' + '<b>GBRF RESULT : ' + props.SCORE + '</b><br />' + '<b>CONFIDENCE : ' + props.CONFIDENCE.toFixed(3).toString() + '</b><br />'
-        : 'Hover over a country');
-};
-
 //Updates mapInfo to focus on mapInformation about specific crimes on hover over the point
 mapInfo.updatePoint = function (props) {
 
@@ -28,12 +19,6 @@ mapInfo.updatePoint = function (props) {
             : 'Hover over an event<br />location');
 };
 
-mapInfo.updateDBSCAN = function () {
-
-    this._div.innerHTML = '<h4>DBSCAN map</h4>'; //+  (props ?
-    // '<b> Country : ' + props.COUNTRY + '</b><br />' + '<b>GBRF RESULT : '+ props.SCORE +'</b><br />'+ '<b>CONFIDENCE : '+ props.CONFIDENCE.toFixed(3).toString() +'</b><br />'
-    // : 'Hover over a country');
-};
 
 
 

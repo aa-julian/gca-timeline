@@ -15,6 +15,11 @@
     "coreui": true,
     "L": true,
     "map": true,
-    "mapInfo": true
+    "mapInfo": true,
+    "shape": true,
+    "fetchAcledData": true,
+    "acledHeatLayer": true,
+    "acledLayerGroup": true,
+    "btnHandlers": true
   }
 }

@@ -17,14 +17,10 @@ class ButtonHandlers {
         this.busyIcon.classList.toggle('invisible');
         this.searchBtn.disabled = !this.searchBtn.disabled;
     }
-    setCheckValue(element) {
-        element.checked ? element.value = true : element.value = false;
-    }
+
     init() {
         // turn off busy indicator and detail by default
         this.busyIcon.classList.toggle('invisible');
-        this.eventBtn.disabled = true;
-        this.notesBtn.disabled = true;
 
         // modal actions
         this.searchBtn.onclick = () => {
@@ -34,43 +30,10 @@ class ButtonHandlers {
             this.searchModal.hide();
         };
         this.updateBtn.onclick = () => {
-            fsi_polygon_get();
+           // fsi_polygon_get();
             this.searchModal.hide();
         };
 
-       
-
-        // set switch values to prevent value lost on page reload
-        this.setCheckValue(this.covidSwitch);
-        this.setCheckValue(this.battlesCheck);
-        this.setCheckValue(this.explosionsCheck);
-        this.setCheckValue(this.protestsCheck);
-        this.setCheckValue(this.riotsCheck);
-        this.setCheckValue(this.strategicCheck);
-        this.setCheckValue(this.violenceCheck);
-
-        // set switch handlers
-        this.covidSwitch.onclick = () => {
-            this.setCheckValue(this.covidSwitch);
-        };
-        this.battlesCheck.onclick = () => {
-            this.setCheckValue(this.battlesCheck);
-        };
-        this.explosionsCheck.onclick = () => {
-            this.setCheckValue(this.explosionsCheck);
-        };
-        this.protestsCheck.onclick = () => {
-            this.setCheckValue(this.protestsCheck);
-        };
-        this.riotsCheck.onclick = () => {
-            this.setCheckValue(this.riotsCheck);
-        };
-        this.strategicCheck.onclick = () => {
-            this.setCheckValue(this.strategicCheck);
-        };
-        this.violenceCheck.onclick = () => {
-            this.setCheckValue(this.violenceCheck);
-        };
     }
 }
 

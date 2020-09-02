@@ -15,10 +15,33 @@ const map = L.map('mapid', {
     layers: [baseMaps['<span style="color: gray">Esri Street Map</span>']]
 });
 
-
-
 const acledLayerGroup = new L.LayerGroup();
 const acledHeatLayer = new L.LayerGroup();
+
+
+var timeDimension = new L.TimeDimension({
+    period: 'PT1H',
+});
+map.timeDimension = timeDimension; 
+
+var player = new L.TimeDimension.Player({
+transitionTime: 100, 
+loop: false,
+startOver:true
+}, timeDimension);
+var timeDimensionControlOptions = {
+player:        player,
+timeDimension: timeDimension,
+position:      'bottomleft',
+autoPlay:      true,
+minSpeed:      1,
+speedStep:     1,
+maxSpeed:      15,
+timeSliderDragUpdate: true
+};
+var timeDimensionControl = new L.Control.TimeDimension(timeDimensionControlOptions);
+
+map.addControl(timeDimensionControl);
 
 
 const overlayMaps = {

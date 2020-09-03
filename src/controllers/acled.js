@@ -9,7 +9,7 @@ module.exports = (req, res) => {
 
 
     sql = `
-    SELECT COORDINATES.ST_AsGeoJSON() as COORDINATES, "year" || '-' || CASE 
+    SELECT TOP 100 COORDINATES.ST_AsGeoJSON() as COORDINATES, "year" || '-' || CASE 
     when SUBSTRING("event_date", 4, 3) = 'Jan' then '01'
     when SUBSTRING("event_date", 4, 3) = 'Feb' then '02'
     when SUBSTRING("event_date", 4, 3) = 'Mar' then '03'

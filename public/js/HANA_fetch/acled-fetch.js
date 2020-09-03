@@ -96,7 +96,7 @@ const fetchAcledData = (url) => {
             }
 
 
-            console.log(data);
+            //console.log(data);
             var acledData = [];
             var geos = [];
 
@@ -107,11 +107,11 @@ const fetchAcledData = (url) => {
                     'type': 'Feature',
                     'properties': {
                         'ACTOR1': data.actor1,
+                        'time': Date.parse(data.event_date),
                         'EVENT_DATE': data.event_date,
                         'EVENT_TYPE': data.event_type,
                         'LOCATION': data.location,
                         'SOURCE': data.source,
-                        'time': Date.parse(data.event_date),
                         'popupContent': 'LOCATION: ' + data.location + '\nEVENT: ' + data.event_type + '\nSOURCE: ' + data.source + '\nDATE: ' + data.event_date + ' ' + data.country
                     },
                     'geometry': JSON.parse(data.COORDINATES),
@@ -144,7 +144,7 @@ const fetchAcledData = (url) => {
 
             });
 
-            acledLayerGroup.addLayer(acledLayer);
+            // acledLayerGroup.addLayer(acledLayer);
 
             let options = {
                 'minOpacity': 0.24,
@@ -154,7 +154,51 @@ const fetchAcledData = (url) => {
             };
             var heat = L.heatLayer(coords, options);
 
-            acledHeatLayer.addLayer(heat);
+            console.log(heat);
+            // var timeLayer = L.timeDimension.Layer.geoJSON(heat);
+            // timeLayer.addTo(map);
+
+            var timeDimension = new L.TimeDimension({
+                period: 'P1Y',
+             });
+             map.timeDimension = timeDimension; 
+             
+             var player = new L.TimeDimension.Player({
+             transitionTime: 100, 
+             loop: false,
+             startOver:true
+             }, timeDimension);
+             
+             var timeDimensionControlOptions = {
+                 player:        player,
+                 timeDimension: timeDimension,
+                 position:      'bottomleft',
+                 autoPlay:      true,
+                 minSpeed:      1,
+                 speedStep:     1,
+                 maxSpeed:      15,
+                 timeSliderDragUpdate: true
+             };
+             var timeDimensionControl = new L.Control.TimeDimension(timeDimensionControlOptions);
+             
+             map.addControl(timeDimensionControl);
+
+            // var timeSeriesLayer = L.geoJSON(acledData, {style:style});
+
+            var geojson = L.timeDimension.layer.geoJson(acledLayer);
+            geojson.addTo(map);
+
+            // var geoJSONTDLayer = L.timeDimension.layer.geoJson(acledLayer, {
+            //     updateTimeDimension: true,
+            //     duration: 'P',
+            //     updateTimeDimensionMode: 'replace',
+            //     addlastPoint: true
+            // });
+
+
+            // geoJSONTDLayer.addTo(map);
+
+            //acledHeatLayer.addLayer(heat);
         });
 
     });

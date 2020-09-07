@@ -2,14 +2,15 @@
 
 module.exports = (req, res) => {
     const hdb = req.db;
-
+    let actor = req.query.actor;
+    console.log(actor);
     var sql = '';
 
     var bindParams = [];
 
 
     sql = `
-    SELECT TOP 100 COORDINATES.ST_AsGeoJSON() as COORDINATES, "year" || '-' || CASE 
+    SELECT COORDINATES.ST_AsGeoJSON() as COORDINATES, "year" || '-' || CASE 
     when SUBSTRING("event_date", 4, 3) = 'Jan' then '01'
     when SUBSTRING("event_date", 4, 3) = 'Feb' then '02'
     when SUBSTRING("event_date", 4, 3) = 'Mar' then '03'
@@ -25,7 +26,8 @@ module.exports = (req, res) => {
     || '-' || SUBSTRING("event_date", 1, 2) as "event_date", "actor1", "location", "source", "event_type", "fatalities", "country" FROM "ACLED_FULL"
     WHERE COORDINATES.ST_Within(
         NEW ST_Polygon( 'Polygon(( ${decodeURIComponent(req.query.polygon)} ))' )
-    ) = 1	
+    ) = 1
+    AND "actor1" LIKE '${actor}'	
     ORDER BY RAND();
     `;
 

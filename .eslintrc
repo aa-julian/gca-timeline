@@ -20,6 +20,8 @@
     "fetchAcledData": true,
     "acledHeatLayer": true,
     "acledLayerGroup": true,
-    "btnHandlers": true
+    "btnHandlers": true,
+    "poly": true,
+    "fetchAcledActors": true
   }
 }

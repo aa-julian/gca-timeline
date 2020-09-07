@@ -10,7 +10,7 @@ map.pm.addControls({
 map.pm.setPathOptions({
     color: 'steelblue',
     fillColor: 'red',
-    fillOpacity: 0.05
+    fillOpacity: 0.01
 });  
 
 
@@ -19,6 +19,7 @@ map.pm.setPathOptions({
 var shape = '';
 var counter = 1;
 var firstPoint = '';
+var poly = '';
 
 map.on('pm:drawstart', ({ workingLayer }) => {
     workingLayer.on('pm:vertexadded', e => {
@@ -31,11 +32,8 @@ map.on('pm:drawstart', ({ workingLayer }) => {
 });
 
 map.on('pm:drawend', e => {
-    //shape = shape.slice(0, -2);
-    console.log(shape);
-    let url = '/acledGet?polygon='+encodeURIComponent(shape + firstPoint);
-    fetchAcledData(url);
-
+    poly = shape + firstPoint;
+    fetchAcledActors();
 });
 
   

@@ -1,10 +1,12 @@
 class ButtonHandlers {
     constructor() {
         this.searchModal = new coreui.Modal(document.getElementById('search-modal'));
+        this.actorModal = new coreui.Modal(document.getElementById('actor-detail-modal'));
         this.busyIcon = document.getElementById('busy-icon');
         this.searchBtn = document.getElementById('search');
         this.cancelBtn = document.getElementById('cancel');
         this.updateBtn = document.getElementById('update');
+        this.actorBtn = document.getElementById('actorButton');
         this.covidSwitch = document.getElementById('covid-switch');
         this.battlesCheck = document.getElementById('battles-check');
         this.explosionsCheck = document.getElementById('explosions-check');
@@ -30,8 +32,11 @@ class ButtonHandlers {
             this.searchModal.hide();
         };
         this.updateBtn.onclick = () => {
-           // fsi_polygon_get();
+            fetchAcledData();
             this.searchModal.hide();
+        };
+        this.actorBtn.onclick = () => {
+            this.actorModal.show();
         };
 
     }

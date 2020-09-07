@@ -28,11 +28,13 @@ app.use('/', hdbext.middleware(services.hana));
 // configure routes
 const indexCtrl = require('./controllers/index');
 const acledCtrl = require('./controllers/acled');
+const actorCtrl = require('./controllers/actors');
 
 
 const router = express.Router();
 router.route('').get(indexCtrl);
 router.route('/acledGet').get(acledCtrl);
+router.route('/actorGet').get(actorCtrl);
 
 
 

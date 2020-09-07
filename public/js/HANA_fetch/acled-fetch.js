@@ -1,5 +1,4 @@
-const fetchAcledData = (url) => {
-
+const fetchAcledData = () => {
     const acledColor = (d) => {
         let color;
         switch (d) {
@@ -46,8 +45,6 @@ const fetchAcledData = (url) => {
             mouseover: highlightFeature,
             mouseout: resetHighlight
         });
-
-        // coords.push(feature.geometry.coordinates);
     }  
     
     function highlightFeature(e) {
@@ -84,10 +81,10 @@ const fetchAcledData = (url) => {
         };
     }
 
-
+    let actor = document.getElementById('text-input').value;
     
     btnHandlers.toggleBusy();
-    fetch(url).then((response) => {
+    fetch('/acledGet?polygon='+encodeURIComponent(poly)+'&actor='+encodeURIComponent(actor)).then((response) => {
         btnHandlers.toggleBusy();
 
         response.json().then((data) => {
@@ -95,12 +92,8 @@ const fetchAcledData = (url) => {
                 return console.error(data.error);
             }
 
-
-            //console.log(data);
             var acledData = [];
             var geos = [];
-
-
 
             data.data.forEach((data) => {
                 acledData.push({
@@ -120,11 +113,8 @@ const fetchAcledData = (url) => {
                 geos.push(JSON.parse(data.COORDINATES));
             });
 
-
             var coords = geos.map(a => a.coordinates.reverse());
 
-
-            console.log(acledData);
             acledLayer = L.geoJSON(acledData, {
                 style: style,
                 pointToLayer: function (feature, latlng) {
@@ -144,28 +134,22 @@ const fetchAcledData = (url) => {
 
             });
 
-            // acledLayerGroup.addLayer(acledLayer);
-
             let options = {
-                'minOpacity': 0.24,
+                'minOpacity': 0.44,
                 'maxZoom': 9,
                 'radius': 12,
                 'gradient': { 0.35: 'blue', 0.45: 'lime', 1: 'red' }
             };
             var heat = L.heatLayer(coords, options);
 
-            console.log(heat);
-            // var timeLayer = L.timeDimension.Layer.geoJSON(heat);
-            // timeLayer.addTo(map);
-
             var timeDimension = new L.TimeDimension({
-                period: 'P1Y',
+                period: 'P1Y'
              });
              map.timeDimension = timeDimension; 
              
              var player = new L.TimeDimension.Player({
-             transitionTime: 100, 
-             loop: false,
+             transitionTime: 50, 
+             loop: true,
              startOver:true
              }, timeDimension);
              
@@ -173,30 +157,30 @@ const fetchAcledData = (url) => {
                  player:        player,
                  timeDimension: timeDimension,
                  position:      'bottomleft',
-                 autoPlay:      true,
+                 autoPlay:      false,
                  minSpeed:      1,
                  speedStep:     1,
-                 maxSpeed:      15,
+                 maxSpeed:      5,
                  timeSliderDragUpdate: true
              };
              var timeDimensionControl = new L.Control.TimeDimension(timeDimensionControlOptions);
              
              map.addControl(timeDimensionControl);
 
-            // var timeSeriesLayer = L.geoJSON(acledData, {style:style});
+            var geoJSONTDLayer = L.timeDimension.layer.geoJson(acledLayer, {
+                updateTimeDimension: false,
+                duration: 'P3M',
+                updateTimeDimensionMode: 'replace'
+            });
 
-            var geojson = L.timeDimension.layer.geoJson(acledLayer);
-            geojson.addTo(map);
+            geoJSONTDLayer.on('update',(e)=>{
+                console.log(e);
+            });
 
-            // var geoJSONTDLayer = L.timeDimension.layer.geoJson(acledLayer, {
-            //     updateTimeDimension: true,
-            //     duration: 'P',
-            //     updateTimeDimensionMode: 'replace',
-            //     addlastPoint: true
-            // });
+            //console.log(geoJSONTDLayer);
 
 
-            // geoJSONTDLayer.addTo(map);
+            geoJSONTDLayer.addTo(map);
 
             //acledHeatLayer.addLayer(heat);
         });

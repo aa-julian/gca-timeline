@@ -27,7 +27,7 @@ module.exports = (req, res) => {
     WHERE COORDINATES.ST_Within(
         NEW ST_Polygon( 'Polygon(( ${decodeURIComponent(req.query.polygon)} ))' )
     ) = 1
-    AND "actor1" LIKE '${actor}'	
+    AND "actor1" LIKE '%${actor}%'	
     ORDER BY RAND();
     `;
 

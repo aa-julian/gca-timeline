@@ -145,6 +145,13 @@ const fetchAcledData = () => {
             var timeDimension = new L.TimeDimension({
                 period: 'P1Y'
              });
+
+
+             L.Control.TimeDimensionCustom = L.Control.TimeDimension.extend({
+                _getDisplayDateFormat: function(date){
+                    return date.format('dS mmmm yyyy');
+                }    
+            });
              map.timeDimension = timeDimension; 
              
              var player = new L.TimeDimension.Player({
@@ -169,7 +176,7 @@ const fetchAcledData = () => {
 
             var geoJSONTDLayer = L.timeDimension.layer.geoJson(acledLayer, {
                 updateTimeDimension: false,
-                duration: 'P3M',
+                duration: 'P1M',
                 updateTimeDimensionMode: 'replace'
             });
 

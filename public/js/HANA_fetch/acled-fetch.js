@@ -93,7 +93,6 @@ const fetchAcledData = () => {
             }
 
             var acledData = [];
-            var geos = [];
 
             data.data.forEach((data) => {
                 acledData.push({
@@ -109,11 +108,7 @@ const fetchAcledData = () => {
                     },
                     'geometry': JSON.parse(data.COORDINATES),
                 });
-
-                geos.push(JSON.parse(data.COORDINATES));
             });
-
-            var coords = geos.map(a => a.coordinates.reverse());
 
             acledLayer = L.geoJSON(acledData, {
                 style: style,
@@ -133,14 +128,6 @@ const fetchAcledData = () => {
                 onEachFeature: onEachFeature
 
             });
-
-            let options = {
-                'minOpacity': 0.44,
-                'maxZoom': 9,
-                'radius': 12,
-                'gradient': { 0.35: 'blue', 0.45: 'lime', 1: 'red' }
-            };
-            var heat = L.heatLayer(coords, options);
 
             var timeDimension = new L.TimeDimension({
                 period: 'P1Y'
@@ -184,12 +171,7 @@ const fetchAcledData = () => {
                 console.log(e);
             });
 
-            //console.log(geoJSONTDLayer);
-
-
             geoJSONTDLayer.addTo(map);
-
-            //acledHeatLayer.addLayer(heat);
         });
 
     });

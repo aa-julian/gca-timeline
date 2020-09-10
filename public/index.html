@@ -17,8 +17,6 @@
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin="" />
     <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
-    <!-- <script type="text/javascript" src="https://cdn.rawgit.com/nezasa/iso8601-js-period/master/iso8601.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/socib/Leaflet.TimeDimension/master/dist/leaflet.timedimension.min.js"></script>   -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.1/dist/leaflet.timedimension.control.min.css" />
     <link rel="stylesheet" href="css/styles.css">
@@ -45,24 +43,7 @@
                                         <span class="btn-icon cil-notes mr-2"></span>
                                         Primary Actors
                                     </button>
-                                    <!-- <div class="dropdown-menu">
-                                        <button class="dropdown-item" type="button" id="notes-chart">Chart</button>
-                                        <button class="dropdown-item" type="button" id="notes-detail">Details</button>
-                                        <button class="dropdown-item" type="button" id="notes-graph">Link Analysis</button>
-                                    </div> -->
                                 </div>
-                                <!-- <div class="btn-group float-right mr-2">
-                                    <button type="button" class="btn btn-outline-primary dropdown-toggle"
-                                        data-toggle="dropdown" aria-expanded="false" id="event"
-                                        title="Select a country to activate">
-                                        <span class="btn-icon cil-newspaper mr-2"></span>
-                                        Event Analysis
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button class="dropdown-item" type="button" id="event-chart">Chart</button>
-                                        <button class="dropdown-item" type="button" id="event-detail">Details</button>
-                                    </div>
-                                </div> -->
                                 <button type="button" class="btn btn-primary float-right mr-2" id="search"
                                     data-toggle="tooltip" data-placement="top" title="Add data to the map">
                                     <span class="btn-icon cil-search mr-2"></span>
@@ -87,44 +68,7 @@
             </div>
         </footer>
 
-        <!-- event chart modal template -->
-        <!-- <div class="modal fade" id="event-chart-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Event Chart Analysis for Region</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <figure>
-                            <div id="sun-chart"></div>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- event detail modal template -->
-        <!-- <div class="modal fade" id="event-detail-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Event Detail Analysis for Region</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-hover table-striped table-responsive-sm" id="apriori-info">
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- notes detail modal template -->
+        <!-- actor detail modal template -->
         <div class="modal fade" id="actor-detail-modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content" id="actors-body">
@@ -143,42 +87,6 @@
             </div>
         </div>
 
-        <!-- notes chart modal template -->
-        <!-- <div class="modal fade" id="notes-chart-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Notes Chart Analysis for Region</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <figure>
-                            <div id="word-cloud-chart"></div>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- notes graph modal template -->
-        <!-- <div class="modal fade" id="notes-graph-modal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Notes Link Analysis for Region</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <svg id="link-chart"></svg>    
-                    </div>
-                </div>
-            </div>
-        </div>         -->
-
         <!-- search modal template -->
         <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -192,78 +100,7 @@
                     <div class="modal-body" id="checkbox-body">
                         <div class="col-md-9">
                             <input class="form-control" id="text-input" type="text" name="text-input" placeholder="Primary Actor Search">
-                            <!-- <span class="help-block">To generalize search add % before and after search text</span> -->
                         </div>
-
-                       
-                            <!-- <label>Region</label>
-                            <select class="form-control" id="select-region">
-                                <option value="East Asia%">East Asia &amp; Pacific</option>
-                                <option value="Europe%">Europe &amp; Central Asia</option>
-                                <option value="Latin%">Latin America &amp; Caribbean</option>
-                                <option value="Middle East%">Middle East &amp; North Africa</option>
-                                <option value="North America">North America</option>
-                                <option value="South Asia">South Asia</option>
-                                <option value="Sub-Saharan%" selected>Sub-Saharan Africa</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Year</label>
-                            <select class="form-control" id="select-year">
-                                <option value="2010">2010</option>
-                                <option value="2011">2011</option>
-                                <option value="2012">2012</option>
-                                <option value="2013">2013</option>
-                                <option value="2014">2014</option>
-                                <option value="2015">2015</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
-                                <option value="2020" selected>2020</option>
-                            </select>
-                        </div> -->
-                        <!-- <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="battles-check">
-                            <label class="form-check-label">
-                                Battles
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="explosions-check">
-                            <label class="form-check-label">
-                                Explosions
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="protests-check">
-                            <label class="form-check-label">
-                                Protests
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="riots-check">
-                            <label class="form-check-label">
-                                Riots
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="strategic-check">
-                            <label class="form-check-label">
-                                Strategic Developments
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="violence-check"">
-                            <label class=" form-check-label">
-                            Violence against Civilians
-                            </label>
-                        </div> -->
-                        <!-- <hr />
-                        <div class="custom-control custom-switch mt-2">
-                            <input type="checkbox" class="custom-control-input" id="covid-switch">
-                            <label class="custom-control-label" for="covid-switch">Covid-19 Events Only</label>
-                        </div> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" id="cancel">

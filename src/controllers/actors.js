@@ -5,18 +5,18 @@ module.exports = (req, res) => {
 
     var sql = '';
 
+    let polygon = decodeURIComponent(req.query.polygon);
     var bindParams = [];
 
 
     sql = `
     SELECT DISTINCT "actor1" FROM "ACLED_FULL"
     WHERE COORDINATES.ST_Within(
-        NEW ST_Polygon( 'Polygon(( ${decodeURIComponent(req.query.polygon)} ))' )
+        NEW ST_Polygon( 'Polygon(( ${polygon} ))' )
     ) = 1	
     ORDER BY "actor1";
     `;
 
-    console.log(sql);
     //HANA DB Connection and call
     try {
         const rows = hdb.exec(sql, bindParams);

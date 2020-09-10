@@ -2,12 +2,11 @@
 
 module.exports = (req, res) => {
     const hdb = req.db;
-    let actor = req.query.actor;
-    console.log(actor);
+    let actor = decodeURIComponent(req.query.actor);
     var sql = '';
 
-    var bindParams = [];
-
+    var bindParams = ['%'+actor+'%'];
+    console.log(bindParams);
 
     sql = `
     SELECT COORDINATES.ST_AsGeoJSON() as COORDINATES, "year" || '-' || CASE 
@@ -27,7 +26,7 @@ module.exports = (req, res) => {
     WHERE COORDINATES.ST_Within(
         NEW ST_Polygon( 'Polygon(( ${decodeURIComponent(req.query.polygon)} ))' )
     ) = 1
-    AND "actor1" LIKE '%${actor}%'	
+    AND "actor1" LIKE ?
     ORDER BY RAND();
     `;
 
